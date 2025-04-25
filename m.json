@@ -1,0 +1,54 @@
+{
+  "manifest_version": 3,
+  "name": "Event Button Extension",
+  "version": "1.0",
+  "description": "Generate event JSON and redirect to popin.site.",
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "storage", "scripting"
+  ],
+  "host_permissions": [
+    "https://lu.ma/*",
+    "https://www.meetup.com/*/events/*",
+    "https://www.eventbrite.ca/e/*",
+    "https://allevents.in/*",
+    "https://beta.popin.site/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://lu.ma/*",
+        "https://www.meetup.com/*/events/*",
+        "https://allevents.in/*",
+        "https://www.eventbrite.ca/e/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "beta.popin.site", 
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["icon.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
